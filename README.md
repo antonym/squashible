@@ -1,0 +1,4 @@
+squashible
+==========
+
+It squashes
