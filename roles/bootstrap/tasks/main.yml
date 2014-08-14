@@ -1,6 +1,5 @@
 ---
 
-  - include: ../../../tasks/utils.yml
   - include: requirements-check.yml
   - include: pre-bootstrap.yml
 

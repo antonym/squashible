@@ -1,13 +1,17 @@
 ---
 # Where should we put the chroot containing our filesystem?
-chrootpath: live_chroot
+chrootpath: /tmp/live_chroot
 
 # Where should we put the kernel, initrd, and squashfs when we're done?
-outputpath: live_output
+outputpath: /tmp/live_output
 
 # Which live OS should be build?  Refer to "supported_live_os" variable below
 # for supported OS versions.
 live_os: fedora_20
+
+# Should we build live environments with SELinux enabled and proper contexts
+# applied?
+selinux_enabled: yes
 
 # Supported operating systems for builder machines.  Add to this list once
 # you've written the necessary playbooks, tasks and variables to support new

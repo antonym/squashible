@@ -1,10 +1,8 @@
 ---
 
-  - include: ../../../tasks/utils.yml
-
   - name: Mount proc inside the chroot
     mount: >
-        name={{chrootpath}}/proc
+        name=/proc
         fstype=proc
         src=none
         state=present
@@ -17,3 +15,9 @@
     with_items:
       - 'nameserver 8.8.8.8'
       - 'nameserver 8.8.4.4'
+
+  - include: debian/main.yml
+    when: ansible_os_family == 'Debian'
+
+  - include: redhat/main.yml
+    when: ansible_os_family == "RedHat"

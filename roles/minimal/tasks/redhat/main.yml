@@ -1,0 +1,15 @@
+---
+
+  - name: Ensure /sys/fs/selinux mount path exists
+    file: >
+        path=/sys/fs/selinux
+        state=directory
+    when: selinux_enabled
+
+  - name: Mount selinuxfs in chroot
+    mount: >
+        name=/sys/fs/selinux
+        src=selinuxfs
+        fstype=selinuxfs
+        state=present
+    when: selinux_enabled

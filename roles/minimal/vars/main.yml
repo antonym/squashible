@@ -1,0 +1,17 @@
+---
+minimal_packages:
+  RedHat:
+    - ctorrent
+    - dracut
+    - dracut-tools
+    - dracut-network
+    - dracut-config-generic
+    - patch
+  Debian:
+    - apt-utils
+    - ctorrent
+    - libpath-class-file-stat-perl 
+    - live-boot
+    - live-boot-initramfs-tools
+    - live-config
+    - live-config-systemd
