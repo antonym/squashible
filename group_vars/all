@@ -14,8 +14,7 @@ live_os: fedora_20
 # operating systems as builders.
 supported_builder_os:
   - centos_7
-  - debian_jessie
-  - debian_sid
+  - debian_jessie/sid
   - fedora_19
   - fedora_20
   - fedora_21
@@ -27,6 +26,7 @@ supported_builder_os:
 supported_live_os:
   - fedora_20
   - fedora_21
+  - debian_jessie/sid
 
 # Builder systems must have these packages installed.
 builder_required_packages:
