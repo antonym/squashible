@@ -14,6 +14,9 @@
         name=squashible-{{ansible_run_uuid}}
         state=present
 
+  - name: Remove the Dockerfile
+    file: path={{chrootpath}}/Dockerfile state=absent
+
   - name: Run docker container to create bootstrapped chroot
     docker: >
         image=squashible-{{ansible_run_uuid}}
@@ -41,3 +44,6 @@
     docker_image: >
         name=squashible-{{ansible_run_uuid}}
         state=absent
+
+  - name: Move the docker filesystem into the root of the chroot path
+    shell: mv {{chrootpath}}/bootstrap/* {{chrootpath}}
