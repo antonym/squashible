@@ -14,5 +14,8 @@
 
 - name: Create minimal live image
   hosts: chroot
+  vars:
+    # HACK: Shim in the path to the chroot for any local_action tasks
+    - livepath: "{{hostvars['localhost']['ansible_env']['PWD']}}/chrootpath"
   roles:
     - minimal
