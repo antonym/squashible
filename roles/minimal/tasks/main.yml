@@ -25,7 +25,7 @@
   - name: Mount selinuxfs in chroot
     local_action: >
         mount
-        name={{hostvars['localhost']['chrootpath']}}/sys/fs/selinux
+        name={{hostvars['localhost']['livepath']}}/sys/fs/selinux
         src=selinuxfs
         fstype=selinuxfs
         state=present

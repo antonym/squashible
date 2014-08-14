@@ -6,16 +6,16 @@
   - name: Copy Dockerfile into chroot path temporarily
     copy: >
         src=Dockerfile_{{ live_os }}
-        dest={{ chrootpath }}/Dockerfile
+        dest={{ livepath }}/Dockerfile
 
   - name: Build a docker image based on our Dockerfile
     docker_image: >
-        path={{chrootpath}}
+        path={{livepath}}
         name=squashible-{{ansible_run_uuid}}
         state=present
 
   - name: Remove the Dockerfile
-    file: path={{chrootpath}}/Dockerfile state=absent
+    file: path={{livepath}}/Dockerfile state=absent
 
   - name: Run docker container to create bootstrapped chroot
     docker: >
@@ -32,7 +32,7 @@
     wait_for: path=/proc/{{container_pid.stdout | int}}/status state=absent
 
   - name: Extract the filesystem to our chroot
-    shell: docker cp squashible-{{ansible_run_uuid}}:/tmp/bootstrap/ {{ chrootpath }}
+    shell: docker cp squashible-{{ansible_run_uuid}}:/tmp/bootstrap/ {{ livepath }}
 
   - name: Destroy docker container
     docker: >
@@ -46,4 +46,4 @@
         state=absent
 
   - name: Move the docker filesystem into the root of the chroot path
-    shell: mv {{chrootpath}}/bootstrap/* {{chrootpath}}
+    shell: mv {{livepath}}/bootstrap/* {{livepath}}

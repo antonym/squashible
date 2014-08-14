@@ -14,7 +14,7 @@
 
   - name: Unmount filesystems left over from a failed build
     mount: >
-      name={{chrootpath}}/{{item.dest}}
+      name={{livepath}}/{{item.dest}}
       src={{item.src}}
       fstype={{item.fstype}}
       state=unmounted
@@ -24,7 +24,7 @@
 
   - name: Clean up the chroot path
     file: >
-      dest={{ chrootpath }}
+      dest={{ livepath }}
       state={{ item }}
       owner=root
       group=root

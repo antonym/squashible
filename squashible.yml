@@ -3,7 +3,7 @@
 - name: Initial setup and bootstrap
   hosts: builder
   vars:
-    - chrootpath: "{{ansible_env['PWD']}}/chrootpath"
+    - livepath: "{{ansible_env['PWD']}}/chrootpath"
   roles:
     - bootstrap
 
