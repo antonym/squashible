@@ -1,0 +1,23 @@
+---
+
+  - name: Mount proc inside the chroot
+    mount: >
+        name=/proc
+        fstype=proc
+        src=none
+        state=present
+
+  - name: Ensure /sys/fs/selinux mount path exists
+    file: >
+        path=/sys/fs/selinux
+        state=directory
+    when: selinux_enabled
+
+  - name: Mount selinuxfs in chroot
+    local_action: >
+        mount
+        name={{livepath}}/sys/fs/selinux
+        src=none
+        fstype=selinuxfs
+        state=present
+    when: selinux_enabled
