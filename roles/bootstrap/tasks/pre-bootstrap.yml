@@ -14,7 +14,8 @@
     register: ansible_run_uuid
 
   - name: Set uuid fact
-    set_fact: ansible_run_uuid={{ansible_run_uuid.stdout}}
+    set_fact: >
+      ansible_run_uuid={{ansible_run_uuid.stdout}}
 
   - name: Unmount filesystems left over from a failed build
     mount: >
