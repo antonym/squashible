@@ -1,9 +1,9 @@
 ---
 # Where should we put the chroot containing our filesystem?
-chrootpath: /tmp/live_chroot
+chrootpath: "{{ansible_env['PWD']}}/live_chroot"
 
 # Where should we put the kernel, initrd, and squashfs when we're done?
-outputpath: /tmp/live_output
+outputpath: "{{ansible_env['PWD']}}/live_output"
 
 # Which live OS should be build?  Refer to "supported_live_os" variable below
 # for supported OS versions.
