@@ -33,6 +33,8 @@ builder_required_packages:
   RedHat:
     - docker-io
     - squashfs-tools
+    - uuid
   Debian:
     - docker.io
     - squashfs-tools
+    - uuid
