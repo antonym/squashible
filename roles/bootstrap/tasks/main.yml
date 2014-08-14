@@ -3,3 +3,41 @@
   - include: requirements-check.yml
   - include: pre-bootstrap.yml
 
+  - name: Copy Dockerfile into chroot path temporarily
+    copy: >
+        src=Dockerfile_{{ live_os }}
+        dest={{ chrootpath }}/Dockerfile
+
+  - name: Build a docker image based on our Dockerfile
+    docker_image: >
+        path={{chrootpath}}
+        name=squashible-{{ansible_run_uuid}}
+        state=present
+
+  - name: Run docker container to create bootstrapped chroot
+    docker: >
+        image=squashible-{{ansible_run_uuid}}
+        name=squashible-{{ansible_run_uuid}}
+        hostname=squashible-{{ansible_run_uuid}}
+        privileged=True
+
+  - name: Get pid of docker container we just started
+    script: ../files/get_docker_pid.sh squashible-{{ansible_run_uuid}}
+    register: container_pid
+
+  - name: Waiting for docker container to finish bootstrapping
+    wait_for: path=/proc/{{container_pid.stdout | int}}/status state=absent
+
+  - name: Extract the filesystem to our chroot
+    shell: docker cp squashible-{{ansible_run_uuid}}:/tmp/bootstrap/ {{ chrootpath }}
+
+  - name: Destroy docker container
+    docker: >
+        image=squashible-{{ansible_run_uuid}}
+        name=squashible-{{ansible_run_uuid}}
+        state=absent
+
+  - name: Destroy docker image
+    docker_image: >
+        name=squashible-{{ansible_run_uuid}}
+        state=absent

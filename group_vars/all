@@ -32,9 +32,11 @@ supported_live_os:
 builder_required_packages:
   RedHat:
     - docker-io
+    - python-docker-py
     - squashfs-tools
     - uuid
   Debian:
     - docker.io
+    - python-docker
     - squashfs-tools
     - uuid
