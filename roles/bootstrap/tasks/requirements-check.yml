@@ -1,12 +1,13 @@
 ---
-- name: Check builder requirements
-  hosts: builder_*
-  tasks:
-
-  - name: Check for supported builder operating systems
+  - name: Is the OS version on the build system supported?
     assert:
       that:
         - "'{{ansible_distribution | lower}}_{{ansible_distribution_major_version}}' in supported_builder_os"
+
+  - name: Is the requested live OS version supported?
+    assert:
+      that:
+        - "'{{live_os}}' in supported_live_os"
 
   - name: Check for required software packages
     command: rpm -q {{ item }}

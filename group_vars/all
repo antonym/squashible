@@ -5,6 +5,10 @@ chrootpath: live_chroot
 # Where should we put the kernel, initrd, and squashfs when we're done?
 outputpath: live_output
 
+# Which live OS should be build?  Refer to "supported_live_os" variable below
+# for supported OS versions.
+live_os: fedora_20
+
 # Supported operating systems for builder machines.  Add to this list once
 # you've written the necessary playbooks, tasks and variables to support new
 # operating systems as builders.
@@ -16,6 +20,13 @@ supported_builder_os:
   - fedora_20
   - fedora_21
   - rhel_7
+
+# Supported live operating systems.  Add to this list once you've written the
+# necessary playbooks, tasks and variables to support new operating systems 
+# as builders.
+supported_live_os:
+  - fedora_20
+  - fedora_21
 
 # Builder systems must have these packages installed.
 builder_required_packages:
