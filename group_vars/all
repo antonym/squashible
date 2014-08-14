@@ -1,0 +1,27 @@
+---
+# Where should we put the chroot containing our filesystem?
+chrootpath: live_chroot
+
+# Where should we put the kernel, initrd, and squashfs when we're done?
+outputpath: live_output
+
+# Supported operating systems for builder machines.  Add to this list once
+# you've written the necessary playbooks, tasks and variables to support new
+# operating systems as builders.
+supported_builder_os:
+  - centos_7
+  - debian_jessie
+  - debian_sid
+  - fedora_19
+  - fedora_20
+  - fedora_21
+  - rhel_7
+
+# Builder systems must have these packages installed.
+builder_required_packages:
+  RedHat:
+    - docker-io
+    - squashfs-tools
+  Debian:
+    - docker.io
+    - squashfs-tools
