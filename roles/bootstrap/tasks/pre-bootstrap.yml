@@ -1,7 +1,5 @@
 ---
 
-  - include: requirements-check.yml
-
   - name: Sort builder tasks based on OS version
     group_by: >
       key=builder_{{ansible_distribution | lower}}_{{ansible_distribution_major_version}}
@@ -10,6 +8,13 @@
     set_fact: >
       chrootpath={{ansible_env['PWD']}}/{{chrootpath}}
       output={{ansible_env['PWD']}}/{{chrootpath}}
+
+  - name: Set uuid for this ansible run 
+    command: uuid
+    register: ansible_run_uuid
+
+  - name: Set uuid fact
+    set_fact: ansible_run_uuid={{ansible_run_uuid.stdout}}
 
   - name: Unmount filesystems left over from a failed build
     mount: >
