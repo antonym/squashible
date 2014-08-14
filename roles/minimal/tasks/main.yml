@@ -1,0 +1,19 @@
+---
+
+  - include: ../../../tasks/utils.yml
+
+  - name: Mount proc inside the chroot
+    mount: >
+        name={{chrootpath}}/proc
+        fstype=proc
+        src=none
+        state=present
+
+  - name: Set /etc/resolv.conf
+    lineinfile: >
+        dest=/etc/resolv.conf
+        line="{{item}}"
+        create=yes
+    with_items:
+      - 'nameserver 8.8.8.8'
+      - 'nameserver 8.8.4.4'

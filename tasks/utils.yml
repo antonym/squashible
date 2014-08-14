@@ -1,0 +1,6 @@
+---
+
+  - name: Determine absolute paths for chroot/output
+    set_fact: >
+      chrootpath={{ansible_env['PWD']}}/{{chrootpath}}
+      output={{ansible_env['PWD']}}/{{chrootpath}}

@@ -1,6 +1,17 @@
 ---
 
-- name: Initial setup
+- name: Initial setup and bootstrap
   hosts: builder
   roles:
     - bootstrap
+
+  tasks:
+    - name: Sort builder tasks based on OS version
+      group_by: >
+        key=builder_{{ansible_distribution | lower}}_{{ansible_distribution_major_version}}
+
+- name: Create minimal live image
+  hosts: chroot
+  tags: skipbootstrap
+  roles:
+    - minimal
