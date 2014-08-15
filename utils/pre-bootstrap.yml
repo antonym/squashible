@@ -1,9 +1,5 @@
 ---
 
-  - name: Sort builder tasks based on OS version
-    group_by: >
-      key=builder_{{ansible_distribution | lower}}_{{ansible_distribution_major_version}}
-
   - name: Set uuid for this ansible run 
     command: uuid
     register: ansible_run_uuid
@@ -14,7 +10,7 @@
 
   - name: Unmount filesystems left over from a failed build
     mount: >
-      name={{livepath}}/{{item.dest}}
+      name={{chrootpath}}/{{item.dest}}
       src={{item.src}}
       fstype={{item.fstype}}
       state=unmounted
@@ -24,8 +20,8 @@
 
   - name: Clean up the chroot path
     file: >
-      dest={{ livepath }}
-      state={{ item }}
+      path={{chrootpath}}
+      state={{item}}
       owner=root
       group=root
       mode=0755

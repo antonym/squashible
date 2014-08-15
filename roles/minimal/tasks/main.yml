@@ -9,6 +9,16 @@
       - 'nameserver 8.8.8.8'
       - 'nameserver 8.8.4.4'
 
+  # NOTE(major): Ansible will complain and refuse to mount any filesystems if
+  # there's no /etc/fstab in place.
+  - name: Create /etc/fstab
+    lineinfile: >
+        dest=/etc/fstab
+        line="# Added by squashible"
+        create=yes
+
+  - include: mounts.yml
+
   - include: debian/main.yml
     when: ansible_os_family == 'Debian'
 

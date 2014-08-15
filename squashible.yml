@@ -2,20 +2,12 @@
 
 - name: Initial setup and bootstrap
   hosts: builder
-  vars:
-    - livepath: "{{ansible_env['PWD']}}/chrootpath"
-  roles:
-    - bootstrap
-
   tasks:
-    - name: Sort builder tasks based on OS version
-      group_by: >
-        key=builder_{{ansible_distribution | lower}}_{{ansible_distribution_major_version}}
+    - include: utils/requirements-check.yml
+    - include: utils/pre-bootstrap.yml
+    - include: utils/build_chroot_docker.yml
 
 - name: Create minimal live image
   hosts: chroot
-  vars:
-    # HACK: Shim in the path to the chroot for any local_action tasks
-    - livepath: "{{hostvars['localhost']['ansible_env']['PWD']}}/chrootpath"
   roles:
     - minimal
