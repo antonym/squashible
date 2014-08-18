@@ -1,11 +1,9 @@
 ---
 
   - include: cleanup_debian.yml
-    delegate_to: chroot
     when: ansible_os_family == "Debian"
 
   - include: cleanup_redhat.yml
-    delegate_to: chroot
     when: ansible_os_family == "RedHat"
 
   - name: Unmount filesystems left over from a failed build

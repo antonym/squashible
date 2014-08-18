@@ -2,20 +2,26 @@
 
   - name: Clean up yum cache
     command: yum clean all
+    delegate_to: chroot
 
   - name: Really clean yum cache
     shell: for i in `ls /var/lib/yum/`; do rm -rfv /var/lib/yum/${i}/*; done
+    delegate_to: chroot
 
   - name: Determine kernel version in chroot
     shell: ls /lib/modules/
     register: kernel_version
+    delegate_to: chroot
 
   - name: Generate module dependencies with depmod for kernel
     shell: depmod -a {{ kernel_version.stdout }}
+    delegate_to: chroot
 
   - name: Regenerate initramfs using dracut
     shell: dracut --force --regenerate-all
+    delegate_to: chroot
 
   - name: Apply default SELinux contexts to the system
     shell: restorecon -R /
     when: selinux_enabled
+    delegate_to: chroot
