@@ -13,3 +13,27 @@
     with_items:
       - /lib/systemd/system/default.target
       - /etc/systemd/system/default.target
+
+  - name: Copy /etc/skel into /root
+    shell: rsync -av /etc/skel/ /root/
+
+  - name: Store journald logs only in RAM
+    lineinfile: dest=/etc/systemd/journald.conf line="Storage=volatile" state=present
+
+  - name: Add live user (for testing)
+    user: name=live shell=/bin/bash groups=wheel append=yes
+      password="$6$uf0amHdCN0H8PwWk$zKoAF4khAjunE/pnq0Q4iMU69t7gj2mvaKku3YE5k3/bVl.H9DcwOnlqBY23yTTcidp2CjknV38rgSro62vpC/"
+
+  - name: Enable logrotate compression
+    lineinfile: dest=/etc/logrotate.conf
+        regexp="^compress"
+        insertafter="^#compress"
+        line="compress"
+        state=present
+
+  - name: Enable daily log rotation
+    lineinfile: dest=/etc/logrotate.conf
+        regexp="^weekly"
+        line="daily"
+        backrefs=yes
+        state=present
