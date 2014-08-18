@@ -10,7 +10,7 @@
     shell: ls /lib/modules/
     register: kernel_version
 
-  - name: Generate module dependencies with depmod for {{ kernel_version.stdout }}
+  - name: Generate module dependencies with depmod for kernel
     shell: depmod -a {{ kernel_version.stdout }}
 
   - name: Regenerate initramfs using dracut

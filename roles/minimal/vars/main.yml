@@ -6,6 +6,7 @@ minimal_packages:
     - dracut-tools
     - dracut-network
     - dracut-config-generic
+    - kernel
     - logrotate
     - patch
     - rsync
