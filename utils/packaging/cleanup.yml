@@ -5,3 +5,13 @@
 
   - include: cleanup_redhat.yml
     when: ansible_os_family == "RedHat"
+
+  - name: Unmount filesystems left over from a failed build
+    mount: >
+      name={{chrootpath}}/{{item.dest}}
+      src={{item.src}}
+      fstype={{item.fstype}}
+      state=unmounted
+    with_items:
+      - { fstype: "proc",       src: "none",        dest: "proc" }
+      - { fstype: "selinuxfs",  src: "selinuxfs",   dest: "sys/fs/selinux" }

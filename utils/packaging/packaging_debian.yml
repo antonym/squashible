@@ -1,0 +1,4 @@
+---
+
+  - name: Pack up chroot into squashfs file
+    local_action: command mksquashfs '{{ chrootpath }}' '{{ outputpath }}/filesystem.squashfs' -comp xz -e boot

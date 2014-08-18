@@ -16,3 +16,4 @@
   hosts: builder
   tasks:
     - include: utils/packaging/cleanup.yml
+    - include: utils/packaging/packaging.yml
