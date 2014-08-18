@@ -41,6 +41,9 @@
     copy: src=redhat/wisp-dracut-config dest=/etc/dracut.conf.d/wisp.conf
       owner=root group=root mode=0644
 
+  - name: Add dracut live filesystem boot patch
+    copy: src=redhat/0001-Testing-live-fileystem-boot.patch dest=/tmp/0001-Testing-live-fileystem-boot.patch
+
   - name: Apply dracut live filesystem boot patch
     command: patch -p0 /usr/lib/dracut/modules.d/90dmsquash-live/dmsquash-live-root.sh /tmp/0001-Testing-live-fileystem-boot.patch
 
