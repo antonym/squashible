@@ -22,7 +22,7 @@
         privileged=True
 
   - name: Get pid of docker container we just started
-    script: utils/bootstrap/dockerfiles/get_docker_pid.sh squashible-{{ansible_run_uuid}}
+    script: utils/bootstrap/get_docker_pid.sh squashible-{{ansible_run_uuid}}
     register: container_pid
 
   - name: Waiting for docker container to finish bootstrapping
