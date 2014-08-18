@@ -7,6 +7,7 @@ minimal_packages:
     - dracut-network
     - dracut-config-generic
     - patch
+    - rsync
   Debian:
     - apt-utils
     - ctorrent
@@ -15,3 +16,4 @@ minimal_packages:
     - live-boot-initramfs-tools
     - live-config
     - live-config-systemd
+    - rsync
