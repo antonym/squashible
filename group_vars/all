@@ -28,9 +28,10 @@ supported_builder_os:
 # necessary playbooks, tasks and variables to support new operating systems 
 # as builders.
 supported_live_os:
+  - centos_7
+  - debian_jessie/sid
   - fedora_20
   - fedora_21
-  - debian_jessie/sid
 
 # Builder systems must have these packages installed.
 builder_required_packages:
