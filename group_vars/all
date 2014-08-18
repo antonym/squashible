@@ -36,6 +36,7 @@ supported_live_os:
 # Builder systems must have these packages installed.
 builder_required_packages:
   RedHat:
+    - btrfs-progs
     - docker-io
     - python-docker-py
     - squashfs-tools
