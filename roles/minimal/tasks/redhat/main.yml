@@ -3,7 +3,6 @@
   - name: Upgrade and install minimum package set
     shell: "{{item}}"
     with_items:
-      - yum clean all
       - yum -y upgrade
       - yum -y install {{ minimal_packages['RedHat'] | join (" ") }}
 
