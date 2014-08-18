@@ -26,7 +26,7 @@ supported_builder_os:
 
 # Supported live operating systems.  Add to this list once you've written the
 # necessary playbooks, tasks and variables to support new operating systems 
-# as builders.
+# as live operating systems.
 supported_live_os:
   - centos_7
   - debian_jessie/sid
