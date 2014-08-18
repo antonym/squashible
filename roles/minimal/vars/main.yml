@@ -6,6 +6,7 @@ minimal_packages:
     - dracut-tools
     - dracut-network
     - dracut-config-generic
+    - logrotate
     - patch
     - rsync
   Debian:
@@ -16,4 +17,5 @@ minimal_packages:
     - live-boot-initramfs-tools
     - live-config
     - live-config-systemd
+    - logrotate
     - rsync
