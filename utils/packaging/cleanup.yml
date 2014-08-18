@@ -1,0 +1,7 @@
+---
+
+  - include: cleanup_debian.yml
+    when: ansible_os_family == "Debian"
+
+  - include: cleanup_redhat.yml
+    when: ansible_os_family == "RedHat"

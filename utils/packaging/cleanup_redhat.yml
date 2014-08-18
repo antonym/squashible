@@ -1,0 +1,21 @@
+---
+
+  - name: Clean up yum cache
+    command: yum clean all
+
+  - name: Really clean yum cache
+    shell: for i in `ls /var/lib/yum/`; do rm -rfv /var/lib/yum/${i}/*; done
+
+  - name: Determine kernel version in chroot
+    shell: ls /lib/modules/
+    register: kernel_version
+
+  - name: Generate module dependencies with depmod for {{ kernel_version.stdout }}
+    shell: depmod -a {{ kernel_version.stdout }}
+
+  - name: Regenerate initramfs using dracut
+    shell: dracut --force --regenerate-all
+
+  - name: Apply default SELinux contexts to the system
+    shell: restorecon -R /
+    when: selinux_enabled

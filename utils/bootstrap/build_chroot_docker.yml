@@ -2,7 +2,7 @@
 
   - name: Copy Dockerfile into chroot path temporarily
     copy: >
-        src=utils/docker/Dockerfile_{{ live_os }}
+        src=utils/bootstrap/dockerfiles/Dockerfile_{{ live_os }}
         dest={{ chrootpath }}/Dockerfile
 
   - name: Build a docker image based on our Dockerfile
@@ -22,7 +22,7 @@
         privileged=True
 
   - name: Get pid of docker container we just started
-    script: utils/get_docker_pid.sh squashible-{{ansible_run_uuid}}
+    script: utils/bootstrap/dockerfiles/get_docker_pid.sh squashible-{{ansible_run_uuid}}
     register: container_pid
 
   - name: Waiting for docker container to finish bootstrapping

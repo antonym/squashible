@@ -3,11 +3,16 @@
 - name: Initial setup and bootstrap
   hosts: builder
   tasks:
-    - include: utils/requirements-check.yml
-    - include: utils/pre-bootstrap.yml
-    - include: utils/build_chroot_docker.yml
+    - include: utils/bootstrap/requirements-check.yml
+    - include: utils/bootstrap/pre-bootstrap.yml
+    - include: utils/bootstrap/build_chroot_docker.yml
 
 - name: Create minimal live image
   hosts: chroot
   roles:
     - minimal
+
+- name: Packaging
+  hosts: builder
+  tasks:
+    - include: utils/cleanup.yml
