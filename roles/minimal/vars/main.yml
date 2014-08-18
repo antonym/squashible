@@ -11,7 +11,7 @@ minimal_packages:
   Debian:
     - apt-utils
     - ctorrent
-    - libpath-class-file-stat-perl 
+    - libpath-class-file-stat-perl
     - live-boot
     - live-boot-initramfs-tools
     - live-config
