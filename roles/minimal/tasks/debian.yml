@@ -1,7 +1,7 @@
 ---
 
   - name: Disable daemon startup with policy-rc.d file
-    copy: src=usr-sbin-policy-rc.d dest=/usr/sbin/policy-rc.d
+    copy: src=debian/usr-sbin-policy-rc.d dest=/usr/sbin/policy-rc.d
       owner=root group=root mode=0755
 
   - name: Upgrade all packages in chroot
@@ -26,17 +26,17 @@
       state=present
 
   - name: Install modified live-boot-initramfs-tools for ctorrent
-    copy: src=usr_share_initramfs-tools_hooks_live dest=/usr/share/initramfs-tools/hooks/live
+    copy: src=debian/usr_share_initramfs-tools_hooks_live dest=/usr/share/initramfs-tools/hooks/live
 
   - name: Install the kernel and regenerate initramfs
     apt: pkg=linux-image-amd64 state=latest
 
   - name: Add support to live-boot to obtain torrents
-    copy: src=lib_live_boot_9990-mount-http.sh dest=/lib/live/boot/9990-mount-http.sh
+    copy: src=debian/lib_live_boot_9990-mount-http.sh dest=/lib/live/boot/9990-mount-http.sh
       owner=root group=root
 
   - name: Fix live-config hooks bug
-    copy: src=lib_live_config_9990-hooks dest=/lib/live/config/9990-hooks
+    copy: src=debian/lib_live_config_9990-hooks dest=/lib/live/config/9990-hooks
       owner=root group=root
 
   - name: Don't let live-config disable ssh password authentication

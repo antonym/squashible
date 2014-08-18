@@ -19,8 +19,8 @@
 
   - include: mounts.yml
 
-  - include: debian/main.yml
+  - include: debian.yml
     when: ansible_os_family == 'Debian'
 
-  - include: redhat/main.yml
+  - include: redhat.yml
     when: ansible_os_family == "RedHat"
