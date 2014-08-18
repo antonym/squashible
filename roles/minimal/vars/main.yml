@@ -9,6 +9,8 @@ minimal_packages:
     - dracut-config-generic
     - kernel
     - logrotate
+    - openssh-clients
+    - openssh-server
     - patch
     - rsync
     - squashfs-tools
@@ -23,3 +25,12 @@ minimal_packages:
     - logrotate
     - rsync
     - squashfs-tools
+
+selinux_packages:
+  RedHat:
+    - policycoreutils
+    - selinux-policy-targeted
+  Debian:
+    - auditd
+    - selinux-basics
+    - selinux-policy-default

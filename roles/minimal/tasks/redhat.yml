@@ -6,6 +6,10 @@
       - yum -y upgrade
       - yum -y install {{ minimal_packages['RedHat'] | join (" ") }}
 
+  - name: Install SELinux packages
+    shell: yum -y install {{ selinux_packages['RedHat'] | join (" ") }}
+    when: selinux_enabled
+
   - name: Set multi-user target as the default systemd target
     file: src=/lib/systemd/system/multi-user.target dest={{item}}
       state=link force=yes

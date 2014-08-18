@@ -7,6 +7,12 @@
   - name: Upgrade all packages in chroot
     apt: update_cache=yes upgrade=dist
 
+  - name: Install SELinux packages
+    apt: pkg={{item}} state=latest
+    with_items:
+      - selinux_packages['Debian']
+    when: selinux_enabled
+
   - name: Convert to systemd
     apt: pkg={{ item }} state=latest
     with_items:
