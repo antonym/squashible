@@ -2,12 +2,9 @@
 
   - name: Clean apt cache
     command: apt-get -y clean
-    delegate_to: chroot
 
   - name: Remove apt lists
     command: rm -rf /var/lib/apt/lists/*
-    delegate_to: chroot
 
   - name: One last generation of the initramfs
     command: update-initramfs -u
-    delegate_to: chroot

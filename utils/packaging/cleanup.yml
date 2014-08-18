@@ -8,7 +8,7 @@
 
   - name: Unmount filesystems left over from a failed build
     mount: >
-      name={{chrootpath}}/{{item.dest}}
+      name={{item.dest}}
       src={{item.src}}
       fstype={{item.fstype}}
       state=unmounted
