@@ -15,4 +15,4 @@
 - name: Packaging
   hosts: builder
   tasks:
-    - include: utils/cleanup.yml
+    - include: utils/cleanup/cleanup.yml
