@@ -2,30 +2,26 @@
 
   - name: Set up output directory
     file: path={{ outputpath }} state={{ item }}
-    delegate_to: builder
     with_items:
       - absent
       - directory
 
   - name: Grab full path to latest chroot kernel
     shell: ls -dt {{ chrootpath }}/boot/vmlin* | head -1
-    delegate_to: builder
     register: kernel_path
 
   - name: Grab full path to latest chroot initrd
     shell: ls -dt {{ chrootpath }}/boot/initr* | head -1
-    delegate_to: builder
     register: initrd_path
 
   - name: Copy kernel/initrd to output directory
     shell: "{{ item }}"
-    delegate_to: builder
     with_items:
       - cp {{ kernel_path['stdout'] }} {{ outputpath }}/vmlinuz
       - cp {{ initrd_path['stdout'] }} {{ outputpath }}/initrd.img
 
   - include: packaging_debian.yml
-    when: hostvars['chroot']['ansible_os_family'] == "Debian"
+    when: hostvars[chrootpath]['ansible_os_family'] == "Debian"
 
   - include: packaging_redhat.yml
-    when: hostvars['chroot']['ansible_os_family'] == "RedHat"
+    when: hostvars[chrootpath]['ansible_os_family'] == "RedHat"

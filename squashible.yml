@@ -24,7 +24,7 @@
     - include: utils/packaging/cleanup.yml
 
 - name: Packaging
-  hosts: all
+  hosts: builder
   tags:
     - packaging
   tasks:
