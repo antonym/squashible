@@ -1,6 +1,7 @@
 ---
 minimal_packages:
   RedHat:
+    - binutils
     - btrfs-progs
     - ctorrent
     - dracut
