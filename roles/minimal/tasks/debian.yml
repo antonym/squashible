@@ -19,7 +19,7 @@
     - systemd
     - systemd-sysv
 
-  - name: Install live-boot and live-config packages
+  - name: Install minimal packages
     apt: pkg={{item}} state=latest
     with_items:
       - "{{ minimal_packages['Debian'] }}"

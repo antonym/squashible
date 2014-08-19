@@ -23,6 +23,8 @@ minimal_packages:
     - live-config
     - live-config-systemd
     - logrotate
+    - openssh-client
+    - openssh-server
     - rsync
     - squashfs-tools
 
