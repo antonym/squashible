@@ -27,6 +27,9 @@
     user: name=live shell=/bin/bash groups=wheel append=yes
       password="$6$uf0amHdCN0H8PwWk$zKoAF4khAjunE/pnq0Q4iMU69t7gj2mvaKku3YE5k3/bVl.H9DcwOnlqBY23yTTcidp2CjknV38rgSro62vpC/"
 
+  - name: Deny live user from ssh, only allow via console
+    lineinfile: dest=/etc/ssh/sshd_config line="DenyUsers live"
+
   - name: Enable logrotate compression
     lineinfile: dest=/etc/logrotate.conf
         regexp="^compress"
