@@ -15,6 +15,7 @@ minimal_packages:
     - patch
     - rsync
     - squashfs-tools
+    - sudo
     - tar
   Debian:
     - apt-utils
@@ -29,6 +30,7 @@ minimal_packages:
     - openssh-server
     - rsync
     - squashfs-tools
+    - sudo
 
 selinux_packages:
   RedHat:
