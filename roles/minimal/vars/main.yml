@@ -14,6 +14,7 @@ minimal_packages:
     - patch
     - rsync
     - squashfs-tools
+    - tar
   Debian:
     - apt-utils
     - ctorrent
