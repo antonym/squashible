@@ -10,7 +10,7 @@
   - name: Install SELinux packages
     apt: pkg={{item}} state=latest
     with_items:
-      - selinux_packages['Debian']
+      - "{{selinux_packages['Debian']}}"
     when: selinux_enabled
 
   - name: Convert to systemd
@@ -22,7 +22,7 @@
   - name: Install live-boot and live-config packages
     apt: pkg={{item}} state=latest
     with_items:
-      - minimal_packages['Debian']
+      - "{{ minimal_packages['Debian'] }}"
 
   - name: Add support for DNS resolution in initramfs
     lineinfile: >
