@@ -2,6 +2,8 @@
 
 - name: Initial setup and bootstrap
   hosts: builder
+  tags:
+    - bootstrap
   tasks:
     - include: utils/bootstrap/requirements-check.yml
     - include: utils/bootstrap/pre-bootstrap.yml
@@ -9,15 +11,21 @@
 
 - name: Create minimal live image
   hosts: chroot
+  tags:
+    - minimal
   roles:
     - minimal
 
 - name: Cleanup
   hosts: chroot
+  tags:
+    - cleanup
   tasks:
     - include: utils/packaging/cleanup.yml
 
 - name: Packaging
   hosts: builder
+  tags:
+    - packaging
   tasks:
     - include: utils/packaging/packaging.yml
