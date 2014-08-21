@@ -31,6 +31,9 @@
       create=yes
       state=present
 
+  - name: Remove hostname file, let live-config take care of it
+    file: path=/etc/hostname state=absent
+
   - name: Install modified live-boot-initramfs-tools for ctorrent
     copy: src=debian/usr_share_initramfs-tools_hooks_live dest=/usr/share/initramfs-tools/hooks/live
 
