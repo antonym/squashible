@@ -14,9 +14,8 @@
     when: selinux_enabled
 
   - name: Mount selinuxfs in chroot
-    local_action: >
-        mount
-        name={{chrootpath}}/sys/fs/selinux
+    mount: >
+        name=sys/fs/selinux
         src=none
         fstype=selinuxfs
         state=present
