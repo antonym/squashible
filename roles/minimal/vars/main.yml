@@ -17,6 +17,7 @@ minimal_packages:
     - squashfs-tools
     - sudo
     - tar
+    - wget
   Debian:
     - apt-utils
     - ctorrent
@@ -31,6 +32,7 @@ minimal_packages:
     - rsync
     - squashfs-tools
     - sudo
+    - wget
 
 selinux_packages:
   RedHat:
